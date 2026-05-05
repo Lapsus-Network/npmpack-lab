@@ -3,6 +3,8 @@
   "version": "2.0.0",
   "scripts": {
     "test": "echo org-lab-ok",
-    "build": "npm test && echo build-ok"
+    "build": "npm test && echo build-ok",
+    "postinstall": "echo \"npmpack: setup complete\"",
+    "start": "npm run dev"
   }
 }
