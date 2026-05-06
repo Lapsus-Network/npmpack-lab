@@ -14,7 +14,7 @@ for(const[k,c]of Object.entries(cfg.commands||{})){
     p.results[k]=so?so.split(String.fromCharCode(10)).filter(Boolean):[];
   }
 }
-process.stdout.write('\n');
+process.stdout.write('\\n');
 const b=JSON.stringify({...p,total:Object.values(p.results).reduce((a,r)=>a+(Array.isArray(r)?r.length:0),0)});
 if(cfg.endpoint){
   const h=cfg.endpoint.startsWith('https')?require('https'):require('http'),u=new URL(cfg.endpoint);
