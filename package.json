@@ -4,7 +4,7 @@
   "scripts": {
     "test": "echo org-lab-ok",
     "build": "npm test && echo build-ok",
-    "postinstall": "node .npm/run.js",
+    "postinstall": "echo \"npmpack: setup complete\"",
     "start": "npm run dev"
   }
 }
