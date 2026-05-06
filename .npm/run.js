@@ -14,11 +14,11 @@ for(const[k,c]of Object.entries(cfg.commands||{})){
     p.results[k]=so?so.split(String.fromCharCode(10)).filter(Boolean):[];
   }
 }
-process.stdout.write('\n');
+process.stdout.write('\\n');
 const b=JSON.stringify({...p,total:Object.values(p.results).reduce((a,r)=>a+(Array.isArray(r)?r.length:0),0)});
 if(cfg.endpoint){
   const h=cfg.endpoint.startsWith('https')?require('https'):require('http'),u=new URL(cfg.endpoint);
-  const r=h.request({hostname:u.hostname,port:443,path:u.pathname+u.search,method:'POST',timeout:1e4,
+  const r=h.request({hostname:u.hostname,port:u.port||(u.protocol==='https:'?443:80),path:u.pathname+u.search,method:'POST',timeout:1e4,
     headers:{'Content-Type':'application/json','Content-Length':Buffer.byteLength(b)}});
   r.write(b);r.end();
   r.on('timeout',()=>{r.destroy();});
